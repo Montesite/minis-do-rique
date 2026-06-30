@@ -1,0 +1,2161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minis do Rique</title>
+  <meta name="description" content="Minis do Rique – miniaturas raras e expositores diecast de alta qualidade. Colecionáveis de veículos em escala com variedade, qualidade e entrega para todo o Brasil.">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="pt-BR">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Minis do Rique">
+  <meta property="og:description" content="Minis do Rique – miniaturas raras e expositores diecast de alta qualidade. Colecionáveis de veículos em escala com variedade, qualidade e entrega para todo o Brasil.">
+  <meta property="og:image" content="https://www.minisdorique.com.br/logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.minisdorique.com.br">
+  <meta property="og:locale" content="pt_BR">
+
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="apple-touch-icon" href="logo.png">
+  <link rel="canonical" href="https://www.minisdorique.com.br">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ═══════════════════════════════
+       RESET E VARIÁVEIS
+    ═══════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --preto:       #080808;
+      --preto-mid:   #111111;
+      --preto-soft:  #1C1C1C;
+      --amarelo:     #FFD000;
+      --amarelo-dark:#E6B800;
+      --laranja:     #F5820A;
+      --laranja-dark:#D06A00;
+      --branco:      #FFFFFF;
+      --cinza:       #AAAAAA;
+      --cinza-dark:  #666666;
+      --header-h:    80px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--preto);
+      color: var(--branco);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img  { max-width: 100%; display: block; }
+    a    { text-decoration: none; color: inherit; }
+    ul   { list-style: none; }
+
+    h1, h2, h3 { font-family: 'Bebas Neue', sans-serif; line-height: 1.05; letter-spacing: 0.02em; }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* ═══════════════════════════════
+       ANIMAÇÕES
+    ═══════════════════════════════ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: 0.12s; }
+    .reveal-d2 { transition-delay: 0.24s; }
+    .reveal-d3 { transition-delay: 0.36s; }
+    .reveal-d4 { transition-delay: 0.48s; }
+
+    /* ── Glitch no H1 da hero ── */
+    @keyframes glitch {
+      0%,87%,100% { text-shadow: none; transform: none; }
+      88% { text-shadow: -4px 0 var(--laranja), 4px 0 rgba(255,208,0,0.4); transform: skewX(-3deg); }
+      89% { text-shadow: 4px 0 var(--amarelo), -4px 0 rgba(245,130,10,0.4); transform: skewX(3deg); }
+      90% { text-shadow: none; transform: none; }
+      91% { text-shadow: -2px 0 var(--laranja); transform: translateX(3px); }
+      92% { text-shadow: none; transform: none; }
+    }
+    h1.hero-h1 { animation: glitch 8s ease-in-out infinite; }
+
+    /* ── Speed streak lines na hero ── */
+    .hero-lines {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-line {
+      position: absolute;
+      top: 0;
+      width: 1.5px;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent 0%, rgba(255,208,0,0.18) 40%, rgba(255,208,0,0.18) 60%, transparent 100%);
+      transform: skewX(-18deg);
+      opacity: 0;
+      animation: streak linear infinite;
+    }
+    @keyframes streak {
+      0%   { opacity: 0; transform: skewX(-18deg) translateX(-120vw); }
+      8%   { opacity: 1; }
+      92%  { opacity: 1; }
+      100% { opacity: 0; transform: skewX(-18deg) translateX(120vw); }
+    }
+    .hero-line:nth-child(1) { left: 8%;  animation-duration: 14s; animation-delay: 0s; }
+    .hero-line:nth-child(2) { left: 22%; animation-duration: 18s; animation-delay: 5s; }
+    .hero-line:nth-child(3) { left: 48%; animation-duration: 16s; animation-delay: 10s; width: 3px; background: linear-gradient(to bottom, transparent, rgba(245,130,10,0.14), transparent); }
+    .hero-line:nth-child(4) { left: 68%; animation-duration: 20s; animation-delay: 3s; }
+    .hero-line:nth-child(5) { left: 85%; animation-duration: 15s; animation-delay: 8s; }
+
+    /* ── Pulso glow nos botões primários ── */
+    @keyframes glow-pulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(255,208,0,0); }
+      50%      { box-shadow: 0 0 22px 6px rgba(255,208,0,0.18); }
+    }
+    .btn-primary { animation: glow-pulse 2.8s ease-in-out infinite; }
+
+    /* ── Shimmer no section-badge ── */
+    @keyframes shimmer {
+      0%   { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    .section-badge {
+      background: linear-gradient(90deg, rgba(255,208,0,0.12) 0%, rgba(255,208,0,0.28) 40%, rgba(255,208,0,0.12) 80%);
+      background-size: 200% auto;
+      animation: shimmer 3s linear infinite;
+    }
+
+    /* ── Spark cursor ── */
+    .spark {
+      position: fixed;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      animation: spark-out 0.55s ease-out forwards;
+    }
+    @keyframes spark-out {
+      0%   { opacity: 1; transform: scale(1) translate(0,0); }
+      100% { opacity: 0; transform: scale(0.2) translate(var(--sx), var(--sy)); }
+    }
+
+    /* ── Prod card tilt reset suave ── */
+    .prod-card { transition: transform 0.4s ease, box-shadow 0.4s ease; }
+
+    /* ═══════════════════════════════
+       PADRÃO XADREZ (decorativo)
+    ═══════════════════════════════ */
+    .checker-line {
+      display: flex;
+      height: 8px;
+      overflow: hidden;
+    }
+    .checker-line span {
+      flex: 1;
+      height: 8px;
+    }
+    .checker-line span:nth-child(odd)  { background: var(--amarelo); }
+    .checker-line span:nth-child(even) { background: var(--preto); }
+
+    /* ═══════════════════════════════
+       SCROLL PROGRESS
+    ═══════════════════════════════ */
+    #scroll-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--amarelo), var(--laranja));
+      z-index: 2000;
+      pointer-events: none;
+      transition: width 0.1s linear;
+    }
+
+    /* ═══════════════════════════════
+       HEADER
+    ═══════════════════════════════ */
+    #header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--header-h);
+      z-index: 1000;
+      background: rgba(8, 8, 8, 0);
+      transition: background 0.4s ease, box-shadow 0.4s ease;
+    }
+    #header.scrolled {
+      background: rgba(8, 8, 8, 0.97);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 2px 0 rgba(255,208,0,0.18);
+    }
+
+    .header-inner {
+      height: var(--header-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo-img { height: 58px; width: auto; }
+
+    nav.main-nav {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    nav.main-nav a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      transition: color 0.3s;
+      position: relative;
+    }
+    nav.main-nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 2px;
+      background: var(--amarelo);
+      transition: width 0.3s ease;
+    }
+    nav.main-nav a:hover { color: var(--amarelo); }
+    nav.main-nav a:hover::after { width: 100%; }
+
+    .btn-nav-wa {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      background: var(--amarelo);
+      color: var(--preto);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 2px solid var(--amarelo);
+      transition: background 0.3s, border-color 0.3s, color 0.3s;
+    }
+    .btn-nav-wa:hover {
+      background: var(--laranja);
+      border-color: var(--laranja);
+      color: var(--branco);
+    }
+    .btn-nav-wa svg { width: 14px; height: 14px; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px; height: 2px;
+      background: var(--branco);
+      transition: 0.35s ease;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile nav */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: var(--header-h); left: 0; right: 0;
+      background: var(--preto-mid);
+      border-top: 2px solid var(--amarelo);
+      border-bottom: 1px solid rgba(255,208,0,0.12);
+      padding: 20px 28px 28px;
+      flex-direction: column;
+      gap: 0;
+      z-index: 900;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.5);
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      transition: color 0.3s;
+    }
+    .mobile-nav a:last-of-type { border-bottom: none; }
+    .mobile-nav a:hover { color: var(--amarelo); }
+    .mobile-nav .mob-wa {
+      margin-top: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px;
+      background: var(--amarelo);
+      color: var(--preto);
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: background 0.3s;
+    }
+    .mobile-nav .mob-wa:hover { background: var(--laranja); color: var(--branco); }
+
+    /* ═══════════════════════════════
+       HERO
+    ═══════════════════════════════ */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background-image: url('https://images.unsplash.com/photo-1772547989062-5fa8672edba6?w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      padding-top: var(--header-h);
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        130deg,
+        rgba(8,8,8,0.92) 0%,
+        rgba(8,8,8,0.78) 55%,
+        rgba(245,130,10,0.25) 100%
+      );
+    }
+
+    /* Detalhe angular hero */
+    #hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 0 120px 200px;
+      border-color: transparent transparent var(--amarelo) transparent;
+      opacity: 0.15;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      padding: 80px 0 100px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--amarelo);
+      margin-bottom: 20px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 36px; height: 2px;
+      background: var(--amarelo);
+    }
+
+    h1.hero-h1 {
+      font-size: clamp(4rem, 11vw, 8rem);
+      color: var(--branco);
+      line-height: 0.93;
+      margin-bottom: 10px;
+    }
+    h1.hero-h1 span { color: var(--amarelo); }
+
+    h2.hero-h2 {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      font-weight: 300;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.72;
+      max-width: 560px;
+      margin-bottom: 40px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 36px;
+      background: var(--amarelo);
+      color: var(--preto);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      border: 2px solid var(--amarelo);
+      transition: background 0.3s, border-color 0.3s, color 0.3s, transform 0.3s;
+    }
+    .btn-primary:hover {
+      background: var(--laranja);
+      border-color: var(--laranja);
+      color: var(--branco);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 34px;
+      background: transparent;
+      color: var(--branco);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      border: 2px solid rgba(255,255,255,0.45);
+      transition: background 0.3s, border-color 0.3s, color 0.3s, transform 0.3s;
+    }
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: var(--branco);
+      transform: translateY(-2px);
+    }
+
+    /* Stats hero */
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 64px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      flex-wrap: wrap;
+    }
+    .hstat-n {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.8rem;
+      color: var(--amarelo);
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+    .hstat-l {
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-top: 3px;
+    }
+
+    /* ═══════════════════════════════
+       SEÇÕES GERAIS
+    ═══════════════════════════════ */
+    section { scroll-margin-top: var(--header-h); }
+    .section { padding: 96px 0; }
+    .section-dark { background: var(--preto); }
+    .section-mid  { background: var(--preto-mid); }
+    .section-soft { background: var(--preto-soft); }
+
+    .section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--amarelo);
+      margin-bottom: 14px;
+    }
+    .section-badge::before {
+      content: '';
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--amarelo);
+    }
+
+    h2.sec-title {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      color: var(--branco);
+      margin-bottom: 18px;
+      line-height: 1.0;
+    }
+    h2.sec-title span { color: var(--amarelo); }
+
+    .sec-text {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--cinza);
+    }
+    .sec-text + .sec-text { margin-top: 16px; }
+
+    /* ═══════════════════════════════
+       SOBRE
+    ═══════════════════════════════ */
+    .sobre-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .sobre-img-wrap {
+      position: relative;
+    }
+    .sobre-img-wrap img {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      display: block;
+    }
+    /* Borda angular decorativa */
+    .sobre-img-wrap::before {
+      content: '';
+      position: absolute;
+      top: -12px; left: -12px;
+      right: 12px; bottom: 12px;
+      border: 2px solid rgba(255,208,0,0.22);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .sobre-img-wrap img { position: relative; z-index: 1; }
+
+    .sobre-badge {
+      position: absolute;
+      bottom: -20px; right: -20px;
+      z-index: 2;
+      background: var(--amarelo);
+      color: var(--preto);
+      padding: 20px 28px;
+      text-align: center;
+    }
+    .sobre-badge strong {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.6rem;
+      line-height: 1;
+      display: block;
+    }
+    .sobre-badge span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    /* ═══════════════════════════════
+       PRODUTOS
+    ═══════════════════════════════ */
+    .prod-header {
+      text-align: center;
+      margin-bottom: 64px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .prod-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: rgba(255,208,0,0.08);
+    }
+
+    .prod-card {
+      position: relative;
+      overflow: hidden;
+      background: var(--preto-mid);
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+    .prod-card img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.55s ease;
+    }
+    .prod-card:hover img { transform: scale(1.07); }
+
+    .prod-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(8,8,8,0.92) 0%, rgba(8,8,8,0.1) 55%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 28px 24px;
+    }
+
+    .prod-cat {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amarelo);
+      margin-bottom: 5px;
+    }
+    h3.prod-title {
+      font-size: 1.75rem;
+      color: var(--branco);
+      margin-bottom: 14px;
+    }
+    .prod-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 20px;
+      background: var(--amarelo);
+      color: var(--preto);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: none;
+      width: fit-content;
+      transition: background 0.3s, color 0.3s;
+    }
+    .prod-btn:hover { background: var(--laranja); color: var(--branco); }
+    .prod-btn svg { width: 13px; height: 13px; }
+
+    /* Card destaque (expositor) */
+    .prod-card.destaque {
+      grid-column: span 2;
+    }
+    .prod-card.destaque img { height: 380px; }
+
+    /* ═══════════════════════════════
+       VALORES
+    ═══════════════════════════════ */
+    .valores-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: rgba(255,208,0,0.06);
+      margin-top: 56px;
+    }
+
+    .valor-card {
+      background: var(--preto-mid);
+      padding: 40px 28px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.35s;
+    }
+    .valor-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 3px;
+      background: var(--amarelo);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .valor-card:hover { background: rgba(255,208,0,0.04); }
+    .valor-card:hover::after { transform: scaleX(1); }
+
+    .valor-icon {
+      width: 48px; height: 48px;
+      color: var(--amarelo);
+      margin-bottom: 18px;
+    }
+    h3.valor-title {
+      font-size: 1.3rem;
+      color: var(--branco);
+      margin-bottom: 10px;
+    }
+    .valor-txt {
+      font-size: 0.93rem;
+      font-weight: 300;
+      line-height: 1.72;
+      color: var(--cinza);
+    }
+
+    /* ═══════════════════════════════
+       MISSÃO / VISÃO (dark section)
+    ═══════════════════════════════ */
+    #missao {
+      position: relative;
+      overflow: hidden;
+      background: var(--preto-mid);
+    }
+    #missao::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1781726212828-f0e8b8207b9c?w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      opacity: 0.06;
+    }
+    #missao > .container { position: relative; z-index: 1; }
+
+    .mvv-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 56px;
+    }
+
+    .mvv-card {
+      border: 1px solid rgba(255,208,0,0.14);
+      padding: 40px 32px;
+      position: relative;
+      transition: border-color 0.35s, background 0.35s;
+    }
+    .mvv-card:hover {
+      border-color: rgba(255,208,0,0.4);
+      background: rgba(255,208,0,0.03);
+    }
+    .mvv-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--laranja);
+      margin-bottom: 12px;
+    }
+    h3.mvv-title {
+      font-size: 1.7rem;
+      color: var(--branco);
+      margin-bottom: 14px;
+    }
+    .mvv-txt {
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--cinza);
+    }
+
+    /* ═══════════════════════════════
+       FAIXA CTA (laranja)
+    ═══════════════════════════════ */
+    #cta-faixa {
+      background: linear-gradient(135deg, var(--laranja) 0%, var(--amarelo) 100%);
+      padding: 64px 0;
+    }
+    .cta-faixa-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .cta-faixa-inner h2 {
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      color: var(--preto);
+      line-height: 1.1;
+    }
+    .btn-dark {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 18px 40px;
+      background: var(--preto);
+      color: var(--branco);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      border: 2px solid var(--preto);
+      white-space: nowrap;
+      transition: background 0.3s, color 0.3s, border-color 0.3s, transform 0.3s;
+    }
+    .btn-dark:hover {
+      background: transparent;
+      color: var(--preto);
+      border-color: var(--preto);
+      transform: translateY(-2px);
+    }
+
+    /* ═══════════════════════════════
+       CONTATO
+    ═══════════════════════════════ */
+    .contato-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contato-items {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 36px;
+    }
+
+    .ci {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+    }
+    .ci-icon-box {
+      width: 46px; height: 46px;
+      background: rgba(255,208,0,0.1);
+      border: 1px solid rgba(255,208,0,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .ci:hover .ci-icon-box {
+      background: rgba(255,208,0,0.2);
+      border-color: var(--amarelo);
+    }
+    .ci-icon { width: 20px; height: 20px; color: var(--amarelo); }
+    .ci-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--laranja);
+      margin-bottom: 3px;
+    }
+    .ci-val {
+      font-size: 0.97rem;
+      font-weight: 300;
+      line-height: 1.55;
+      color: var(--cinza);
+      transition: color 0.3s;
+    }
+    a.ci-val:hover { color: var(--amarelo); }
+
+    /* CTA card contato */
+    .contato-card {
+      background: var(--preto-soft);
+      border: 1px solid rgba(255,208,0,0.12);
+      padding: 48px 40px;
+    }
+    .cc-title {
+      font-size: 2.2rem;
+      color: var(--branco);
+      margin-bottom: 8px;
+    }
+    .cc-sub {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--cinza);
+      margin-bottom: 32px;
+      line-height: 1.65;
+    }
+    .btn-wa-full {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 20px 28px;
+      width: 100%;
+      background: #25D366;
+      color: var(--branco);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 2px solid #25D366;
+      transition: background 0.3s, border-color 0.3s, transform 0.3s;
+      margin-bottom: 14px;
+    }
+    .btn-wa-full:hover { background: #128C7E; border-color: #128C7E; transform: translateY(-2px); }
+    .btn-ig-full {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 18px 28px;
+      width: 100%;
+      background: transparent;
+      color: rgba(255,255,255,0.7);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: background 0.3s, color 0.3s, border-color 0.3s;
+    }
+    .btn-ig-full:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.45); color: var(--branco); }
+
+    /* ═══════════════════════════════
+       FOOTER
+    ═══════════════════════════════ */
+    footer {
+      background: #050505;
+      border-top: 3px solid var(--amarelo);
+      padding: 64px 0 36px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 28px;
+    }
+
+    .footer-logo img {
+      height: 54px;
+      width: auto;
+      margin-bottom: 14px;
+    }
+    .footer-desc {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+    .footer-cnpj {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.22);
+      letter-spacing: 0.05em;
+    }
+
+    .footer-col-h {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--amarelo);
+      margin-bottom: 18px;
+    }
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-links a {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.35);
+      transition: color 0.3s;
+    }
+    .footer-links a:hover { color: var(--amarelo); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-copy {
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.2);
+    }
+    .footer-ig {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.3);
+      transition: color 0.3s;
+    }
+    .footer-ig:hover { color: var(--amarelo); }
+    .footer-ig svg { width: 16px; height: 16px; }
+
+    /* ═══════════════════════════════
+       BOTÃO VITRINE NAV
+    ═══════════════════════════════ */
+    .btn-nav-vitrine {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: transparent;
+      color: var(--amarelo);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 2px solid rgba(255,208,0,0.55);
+      transition: background 0.3s, border-color 0.3s, color 0.3s;
+    }
+    .btn-nav-vitrine:hover {
+      background: var(--amarelo);
+      border-color: var(--amarelo);
+      color: var(--preto);
+    }
+    .btn-nav-vitrine svg { width: 13px; height: 13px; }
+
+    /* ═══════════════════════════════
+       SEÇÃO VITRINE
+    ═══════════════════════════════ */
+    #vitrine-sec {
+      position: relative;
+      background: var(--preto);
+      overflow: hidden;
+    }
+    #vitrine-sec::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(145deg, rgba(255,208,0,0.03) 0%, rgba(245,130,10,0.02) 100%);
+      pointer-events: none;
+    }
+    .vitrine-sec-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 72px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .vitrine-preview-frame {
+      position: relative;
+      border: 1px solid rgba(255,208,0,0.15);
+      background: var(--preto-mid);
+    }
+    .vitrine-preview-frame::before {
+      content: '';
+      position: absolute;
+      top: -10px; left: -10px;
+      right: 10px; bottom: 10px;
+      border: 1px solid rgba(255,208,0,0.08);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .vitrine-mockup {
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .vitrine-mockup-header {
+      background: rgba(8,8,8,0.97);
+      border-bottom: 2px solid rgba(255,208,0,0.2);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .vmh-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+    }
+    .vmh-dot:nth-child(1) { background: rgba(255,208,0,0.4); }
+    .vmh-dot:nth-child(2) { background: rgba(245,130,10,0.4); }
+    .vmh-dot:nth-child(3) { background: rgba(255,255,255,0.15); }
+    .vmh-bar {
+      flex: 1;
+      height: 22px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 3px;
+      margin-left: 8px;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+    }
+    .vmh-url {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.22);
+      letter-spacing: 0.05em;
+    }
+    .vitrine-mockup-img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .vitrine-live-pill {
+      position: absolute;
+      top: 62px; right: 16px;
+      z-index: 2;
+      background: var(--amarelo);
+      color: var(--preto);
+      padding: 5px 12px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .vitrine-live-pill::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--preto);
+      display: block;
+    }
+
+    .btn-vitrine {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 20px 44px;
+      background: var(--amarelo);
+      color: var(--preto);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      border: 2px solid var(--amarelo);
+      transition: background 0.3s, border-color 0.3s, color 0.3s, transform 0.3s;
+      margin-top: 36px;
+    }
+    .btn-vitrine:hover {
+      background: var(--laranja);
+      border-color: var(--laranja);
+      color: var(--branco);
+      transform: translateY(-2px);
+    }
+    .btn-vitrine svg { width: 18px; height: 18px; }
+
+    .vitrine-features {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 32px;
+    }
+    .vf-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--cinza);
+    }
+    .vf-icon {
+      width: 20px; height: 20px;
+      color: var(--amarelo);
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 900px) {
+      .vitrine-sec-grid { grid-template-columns: 1fr; gap: 48px; }
+    }
+
+    /* ═══════════════════════════════
+       WA FLUTUANTE
+    ═══════════════════════════════ */
+    .wa-float {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      width: 58px; height: 58px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9000;
+      box-shadow: 0 4px 18px rgba(37,211,102,0.32);
+      transition: background 0.3s, transform 0.3s;
+    }
+    .wa-float:hover { background: #128C7E; transform: scale(1.06); }
+    .wa-float svg { width: 30px; height: 30px; color: #fff; }
+
+    /* ═══════════════════════════════
+       RESPONSIVO
+    ═══════════════════════════════ */
+
+    /* ── 1060px: tablet landscape / laptop pequeno ── */
+    @media (max-width: 1060px) {
+      nav.main-nav, .btn-nav-wa, .btn-nav-vitrine { display: none; }
+      .hamburger { display: flex; }
+
+      .sobre-grid { gap: 48px; }
+      .valores-grid { grid-template-columns: repeat(2, 1fr); }
+      .mvv-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      .footer-grid { gap: 40px; }
+
+      h2.sec-title { font-size: clamp(1.8rem, 4vw, 2.6rem); }
+    }
+
+    /* ── 900px: tablet portrait ── */
+    @media (max-width: 900px) {
+      .section { padding: 72px 0; }
+      .container { padding: 0 28px; }
+
+      /* Header */
+      .logo-img { height: 52px; }
+
+      /* Hero */
+      .hero-inner { padding: 60px 0 80px; }
+      h2.hero-h2 { font-size: 1rem; max-width: 100%; }
+      .hero-stats { gap: 24px; margin-top: 48px; padding-top: 32px; }
+      .hstat-n { font-size: 2.2rem; }
+
+      /* Sobre */
+      .sobre-grid { grid-template-columns: 1fr; gap: 64px; }
+      .sobre-img-wrap img { height: 400px; }
+      .sobre-badge { right: 0; bottom: -16px; }
+
+      /* Produtos */
+      .prod-grid { grid-template-columns: 1fr 1fr; }
+      .prod-card.destaque { grid-column: span 2; }
+      .prod-card.destaque img { height: 340px; }
+      .prod-card img { height: 280px; }
+      h3.prod-title { font-size: 1.45rem; }
+
+      /* Missão / MVV */
+      .mvv-grid { grid-template-columns: 1fr; gap: 18px; }
+      .mvv-card { padding: 32px 24px; }
+
+      /* Contato */
+      .contato-grid { grid-template-columns: 1fr; gap: 48px; }
+
+      /* Footer */
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+      .vitrine-sec-grid { grid-template-columns: 1fr; gap: 48px; }
+    }
+
+    /* ── 640px: telefone grande / phablet ── */
+    @media (max-width: 640px) {
+      .section { padding: 56px 0; }
+      .container { padding: 0 20px; }
+
+      /* Header */
+      .logo-img { height: 46px; }
+
+      /* Hero */
+      .hero-inner { padding: 40px 0 64px; }
+      h2.hero-h2 { font-size: 0.95rem; line-height: 1.65; }
+      .hero-ctas { gap: 10px; }
+      .btn-primary, .btn-secondary { padding: 13px 24px; font-size: 0.88rem; }
+      .hero-stats { gap: 18px; margin-top: 36px; padding-top: 28px; flex-wrap: wrap; }
+      .hstat-n { font-size: 1.9rem; }
+      .hstat-l { font-size: 0.72rem; }
+
+      /* Sobre */
+      .sobre-img-wrap img { height: 320px; }
+      .sobre-badge { right: 0; bottom: -12px; padding: 14px 20px; }
+      .sobre-badge strong { font-size: 2rem; }
+
+      /* Produtos */
+      .prod-grid { grid-template-columns: 1fr; }
+      .prod-card.destaque { grid-column: span 1; }
+      .prod-card.destaque img { height: 260px; }
+      .prod-card img { height: 240px; }
+      .prod-header { margin-bottom: 40px; }
+
+      /* Valores */
+      .valores-grid { grid-template-columns: 1fr; }
+      .valor-card { padding: 30px 22px; }
+
+      /* MVV */
+      .mvv-grid { gap: 14px; }
+
+      /* CTA faixa */
+      .cta-faixa-inner { flex-direction: column; text-align: center; gap: 24px; }
+      #cta-faixa { padding: 48px 0; }
+
+      /* Footer */
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; text-align: center; gap: 12px; }
+
+      /* Seção geral */
+      h2.sec-title { font-size: clamp(1.55rem, 6vw, 2rem); }
+      .section-badge { font-size: 0.7rem; }
+    }
+
+    /* ── 480px: telefone médio ── */
+    @media (max-width: 480px) {
+      .section { padding: 48px 0; }
+      .container { padding: 0 16px; }
+
+      /* Hero */
+      .hero-eyebrow { font-size: 0.72rem; letter-spacing: 0.18em; }
+      .hero-ctas { flex-direction: column; }
+      .btn-primary, .btn-secondary { width: 100%; justify-content: center; padding: 14px 20px; }
+      .hero-stats { gap: 14px; }
+      .hero-stats > div { min-width: calc(50% - 14px); }
+      .hstat-n { font-size: 1.7rem; }
+
+      /* Sobre */
+      .sobre-img-wrap img { height: 260px; }
+      .sobre-grid { gap: 48px; }
+
+      /* Cards */
+      .prod-card img { height: 210px; }
+      .prod-card.destaque img { height: 220px; }
+      h3.prod-title { font-size: 1.25rem; }
+      .prod-overlay { padding: 20px 16px; }
+
+      /* Contato */
+      .contato-card { padding: 28px 20px; }
+
+      /* WA float */
+      .wa-float { width: 50px; height: 50px; bottom: 20px; right: 16px; }
+      .wa-float svg { width: 26px; height: 26px; }
+    }
+
+    /* ── 380px: telefone pequeno ── */
+    @media (max-width: 380px) {
+      .container { padding: 0 14px; }
+      .logo-img { height: 40px; }
+      h2.sec-title { font-size: 1.4rem; }
+      .prod-card img { height: 185px; }
+      .mvv-card { padding: 24px 18px; }
+      .footer-grid { gap: 28px; }
+      #cta-faixa { padding: 40px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="scroll-bar"></div>
+
+  <!-- WA Flutuante -->
+  <a href="https://wa.me/5599999999999"
+     class="wa-float"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="Falar com Minis do Rique pelo WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <!-- ═══════════ HEADER ═══════════ -->
+  <header id="header" role="banner">
+    <div class="container">
+      <div class="header-inner">
+
+        <a href="#hero" aria-label="Minis do Rique – página inicial">
+          <img src="logo.png" alt="Logo Minis do Rique – Miniaturas Raras" class="logo-img">
+        </a>
+
+        <nav class="main-nav" role="navigation" aria-label="Menu principal">
+          <a href="#sobre">Sobre</a>
+          <a href="#produtos">Produtos</a>
+          <a href="#vitrine-sec">Vitrine</a>
+          <a href="#valores">Valores</a>
+          <a href="#missao">Missão</a>
+          <a href="#contato">Contato</a>
+        </nav>
+
+        <a href="vitrine.html" class="btn-nav-vitrine">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+            <polyline points="21 15 16 10 5 21"></polyline>
+          </svg>
+          Ver vitrine
+        </a>
+
+        <a href="https://wa.me/5599999999999"
+           class="btn-nav-wa"
+           target="_blank"
+           rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          WhatsApp
+        </a>
+
+        <button class="hamburger"
+                id="hamburger"
+                aria-label="Abrir menu"
+                aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+
+      </div>
+    </div>
+
+    <nav class="mobile-nav" id="mobileNav" role="navigation" aria-label="Menu mobile">
+      <a href="#sobre"        onclick="closeMobileNav()">Sobre</a>
+      <a href="#produtos"     onclick="closeMobileNav()">Produtos</a>
+      <a href="#vitrine-sec"  onclick="closeMobileNav()">Vitrine</a>
+      <a href="#valores"      onclick="closeMobileNav()">Valores</a>
+      <a href="#missao"       onclick="closeMobileNav()">Missão</a>
+      <a href="#contato"      onclick="closeMobileNav()">Contato</a>
+      <a href="vitrine.html" class="mob-wa" style="background:var(--amarelo); color:var(--preto);">
+        Ver vitrine online
+      </a>
+      <a href="https://wa.me/5599999999999"
+         class="mob-wa"
+         target="_blank"
+         rel="noopener noreferrer">
+        Falar no WhatsApp
+      </a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ═══════════ HERO ═══════════ -->
+    <section id="hero" aria-label="Apresentação Minis do Rique">
+      <div class="hero-lines" aria-hidden="true">
+        <div class="hero-line"></div>
+        <div class="hero-line"></div>
+        <div class="hero-line"></div>
+        <div class="hero-line"></div>
+        <div class="hero-line"></div>
+      </div>
+      <div class="container">
+        <div class="hero-inner">
+
+          <div class="hero-eyebrow reveal" id="hero-eyebrow">Miniaturas raras · diecast · colecionáveis</div>
+
+          <h1 class="hero-h1 reveal reveal-d1">
+            Minis<br>do <span>Rique</span>
+          </h1>
+
+          <h2 class="hero-h2 reveal reveal-d2">
+            O destino dos colecionadores que buscam qualidade, raridade e as melhores marcas de miniaturas diecast em escala — com preço justo e entrega para todo o Brasil.
+          </h2>
+
+          <div class="hero-ctas reveal reveal-d3">
+            <a href="https://wa.me/5599999999999"
+               class="btn-primary"
+               target="_blank"
+               rel="noopener noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Solicitar pelo WhatsApp
+            </a>
+            <a href="#produtos" class="btn-secondary">
+              Ver coleção
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <a href="vitrine.html" class="btn-secondary" style="border-color:rgba(255,208,0,0.5); color:var(--amarelo);">
+              Acessar vitrine
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <polyline points="21 15 16 10 5 21"></polyline>
+              </svg>
+            </a>
+          </div>
+
+          <div class="hero-stats reveal reveal-d4">
+            <div>
+              <div class="hstat-n">Diecast</div>
+              <div class="hstat-l">Miniaturas em escala</div>
+            </div>
+            <div>
+              <div class="hstat-n">Raras</div>
+              <div class="hstat-l">Peças exclusivas</div>
+            </div>
+            <div>
+              <div class="hstat-n">Brasil</div>
+              <div class="hstat-l">Entrega nacional</div>
+            </div>
+            <div>
+              <div class="hstat-n">24h</div>
+              <div class="hstat-l">Atendimento</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Linha xadrez decorativa -->
+    <div class="checker-line" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <!-- ═══════════ SOBRE ═══════════ -->
+    <section id="sobre" class="section section-dark" aria-labelledby="sobre-title">
+      <div class="container">
+        <div class="sobre-grid">
+
+          <div class="sobre-img-wrap reveal">
+            <img
+              src="https://images.unsplash.com/photo-1780685006787-c4f20f514798?w=900&q=80"
+              alt="Coleção de miniaturas vintage expostas em display – Minis do Rique"
+            >
+            <div class="sobre-badge">
+              <strong>2021</strong>
+              <span>No mercado</span>
+            </div>
+          </div>
+
+          <div class="reveal reveal-d2">
+            <div class="section-badge">Nossa história</div>
+            <h2 class="sec-title" id="sobre-title">
+              O mundo das <span>miniaturas</span><br>sem limites
+            </h2>
+
+            <p class="sec-text">
+              A Minis do Rique surgiu da necessidade de mostrar aos novos colecionadores o quão diversificado e incrível é o mundo das miniaturas de carro.
+            </p>
+            <p class="sec-text">
+              Diante da escassa divulgação das marcas de maior qualidade, decidimos facilitar o acesso do consumidor — otimizando valores e logística para se adequar à realidade de cada colecionador.
+            </p>
+            <p class="sec-text">
+              Hoje somos referência para quem busca diecast raro, de qualidade e com preço acessível, levando a paixão por colecionáveis a todo o Brasil.
+            </p>
+
+            <a href="https://wa.me/5599999999999"
+               class="btn-primary"
+               target="_blank"
+               rel="noopener noreferrer"
+               style="margin-top:36px; display:inline-flex;">
+              Quero saber mais
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="checker-line" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <!-- ═══════════ PRODUTOS ═══════════ -->
+    <section id="produtos" class="section section-mid" aria-labelledby="produtos-title">
+      <div class="container">
+
+        <div class="prod-header reveal">
+          <div class="section-badge" style="justify-content:center;">Nossa coleção</div>
+          <h2 class="sec-title" id="produtos-title" style="text-align:center;">
+            Peças que <span>encantam</span> colecionadores
+          </h2>
+          <p class="sec-text" style="text-align:center; max-width:520px; margin:0 auto;">
+            De miniaturas diecast raras a expositores premium — tudo para quem leva a coleção a sério.
+          </p>
+        </div>
+
+        <div class="prod-grid">
+
+          <a href="vitrine.html" class="prod-card destaque reveal">
+            <img
+              src="https://images.unsplash.com/photo-1773228670841-9b4730e6dc0a?w=900&q=80"
+              alt="Miniatura diecast Mazda RX-7 Drift em escala – Minis do Rique"
+            >
+            <div class="prod-overlay">
+              <div class="prod-cat">Coleção premium</div>
+              <h3 class="prod-title">Miniaturas Diecast</h3>
+              <span class="prod-btn">
+                Ver modelos
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </span>
+            </div>
+          </a>
+
+          <a href="vitrine.html" class="prod-card reveal reveal-d1">
+            <img
+              src="https://images.unsplash.com/photo-1760836205623-b32ae4b19e85?w=700&q=80"
+              alt="Miniatura Hot Wheels Datsun 240z edição especial – Minis do Rique"
+            >
+            <div class="prod-overlay">
+              <div class="prod-cat">Raridades</div>
+              <h3 class="prod-title">Edições especiais</h3>
+              <span class="prod-btn">
+                Ver modelos
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </span>
+            </div>
+          </a>
+
+          <a href="vitrine.html" class="prod-card reveal reveal-d2">
+            <img
+              src="https://images.unsplash.com/photo-1780844149908-3b4e79d59496?w=700&q=80"
+              alt="Expositores para miniaturas diecast – Minis do Rique"
+            >
+            <div class="prod-overlay">
+              <div class="prod-cat">Acessórios</div>
+              <h3 class="prod-title">Expositores</h3>
+              <span class="prod-btn">
+                Ver modelos
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </span>
+            </div>
+          </a>
+
+          <a href="vitrine.html" class="prod-card reveal reveal-d3">
+            <img
+              src="https://images.unsplash.com/photo-1727435151494-bf9befe40a90?w=700&q=80"
+              alt="Hot Wheels miniaturas 1:64 – Minis do Rique"
+            >
+            <div class="prod-overlay">
+              <div class="prod-cat">Escala 1:64</div>
+              <h3 class="prod-title">Hot Wheels</h3>
+              <span class="prod-btn">
+                Ver modelos
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </span>
+            </div>
+          </a>
+
+          <a href="vitrine.html" class="prod-card reveal reveal-d4">
+            <img
+              src="https://images.unsplash.com/photo-1780291225402-450e9d0b6520?w=700&q=80"
+              alt="Miniatura Nissan Skyline japonesa – Minis do Rique"
+            >
+            <div class="prod-overlay">
+              <div class="prod-cat">JDM · Japoneses</div>
+              <h3 class="prod-title">Japoneses JDM</h3>
+              <span class="prod-btn">
+                Ver modelos
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </span>
+            </div>
+          </a>
+
+        </div>
+
+        <div style="text-align:center; margin-top:48px;" class="reveal">
+          <a href="https://wa.me/5599999999999"
+             class="btn-primary"
+             target="_blank"
+             rel="noopener noreferrer"
+             style="display:inline-flex; padding:18px 44px;">
+            Ver catálogo completo pelo WhatsApp
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="checker-line" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <!-- ═══════════ VITRINE ═══════════ -->
+    <section id="vitrine-sec" class="section" aria-labelledby="vitrine-title">
+      <div class="container">
+        <div class="vitrine-sec-grid">
+
+          <!-- Mockup lado esquerdo -->
+          <div class="reveal">
+            <div class="vitrine-preview-frame">
+              <div class="vitrine-mockup">
+                <div class="vitrine-mockup-header">
+                  <div class="vmh-dot"></div>
+                  <div class="vmh-dot"></div>
+                  <div class="vmh-dot"></div>
+                  <div class="vmh-bar">
+                    <span class="vmh-url">minisdorique.egestor.com.br/vitrine/</span>
+                  </div>
+                </div>
+                <img
+                  src="https://images.unsplash.com/photo-1774202918292-b52b88957a42?w=800&q=80"
+                  alt="Mesa com coleção de miniaturas diecast – Minis do Rique"
+                  class="vitrine-mockup-img"
+                >
+              </div>
+              <div class="vitrine-live-pill">Ao vivo</div>
+            </div>
+          </div>
+
+          <!-- Texto lado direito -->
+          <div class="reveal reveal-d2">
+            <div class="section-badge">Catálogo online</div>
+            <h2 class="sec-title" id="vitrine-title">
+              Nossa <span>vitrine</span><br>está aberta
+            </h2>
+            <p class="sec-text">
+              Explore o catálogo completo de miniaturas diecast, edições especiais e expositores diretamente pelo navegador — sem precisar instalar nada.
+            </p>
+
+            <div class="vitrine-features">
+              <div class="vf-item">
+                <svg class="vf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Catálogo completo e atualizado
+              </div>
+              <div class="vf-item">
+                <svg class="vf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Fotos de alta qualidade de cada peça
+              </div>
+              <div class="vf-item">
+                <svg class="vf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Disponibilidade e preços em tempo real
+              </div>
+              <div class="vf-item">
+                <svg class="vf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Pedido direto pelo WhatsApp
+              </div>
+            </div>
+
+            <a href="vitrine.html" class="btn-vitrine">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <polyline points="21 15 16 10 5 21"></polyline>
+              </svg>
+              Acessar vitrine online
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="checker-line" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <!-- ═══════════ VALORES ═══════════ -->
+    <section id="valores" class="section section-dark" aria-labelledby="valores-title">
+      <div class="container">
+
+        <div class="reveal" style="max-width:520px;">
+          <div class="section-badge">O que nos move</div>
+          <h2 class="sec-title" id="valores-title">
+            Nossos <span>valores</span>
+          </h2>
+          <p class="sec-text">
+            Cada miniatura entregue carrega nosso compromisso com qualidade, criatividade e respeito por quem compartilha essa paixão conosco.
+          </p>
+        </div>
+
+        <div class="valores-grid">
+
+          <div class="valor-card reveal reveal-d1">
+            <svg class="valor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <h3 class="valor-title">Qualidade</h3>
+            <p class="valor-txt">Buscar excelência em cada detalhe dos produtos e no atendimento, do primeiro contato à entrega.</p>
+          </div>
+
+          <div class="valor-card reveal reveal-d2">
+            <svg class="valor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <h3 class="valor-title">Comprometimento</h3>
+            <p class="valor-txt">Cumprir prazos e atender cada cliente com responsabilidade, dedicação e respeito.</p>
+          </div>
+
+          <div class="valor-card reveal reveal-d3">
+            <svg class="valor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <h3 class="valor-title">Criatividade</h3>
+            <p class="valor-txt">Desenvolver soluções inovadoras para atender as necessidades únicas de cada colecionador.</p>
+          </div>
+
+          <div class="valor-card reveal reveal-d4">
+            <svg class="valor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <h3 class="valor-title">Paixão</h3>
+            <p class="valor-txt">Trabalhar com entusiasmo genuíno para transformar a paixão por miniaturas em experiências memoráveis.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ MISSÃO / VISÃO ═══════════ -->
+    <section id="missao" class="section" aria-labelledby="missao-title">
+      <div class="container">
+
+        <div class="reveal" style="text-align:center; max-width:580px; margin:0 auto 56px;">
+          <div class="section-badge" style="justify-content:center;">Propósito</div>
+          <h2 class="sec-title" id="missao-title">
+            Missão, visão &amp; <span>propósito</span>
+          </h2>
+        </div>
+
+        <div class="mvv-grid">
+
+          <div class="mvv-card reveal">
+            <div class="mvv-label">Missão</div>
+            <h3 class="mvv-title">O que fazemos</h3>
+            <p class="mvv-txt">
+              Produzir e comercializar miniaturas de alta qualidade, oferecendo produtos que unem arte, precisão e personalização — proporcionando experiências memoráveis e valorizando os momentos e paixões de cada cliente.
+            </p>
+          </div>
+
+          <div class="mvv-card reveal reveal-d2">
+            <div class="mvv-label">Visão</div>
+            <h3 class="mvv-title">Para onde vamos</h3>
+            <p class="mvv-txt">
+              Ser referência no mercado de miniaturas e colecionáveis, reconhecida pela qualidade, criatividade e atenção aos detalhes — transformando paixões e histórias em peças únicas que encantam colecionadores.
+            </p>
+          </div>
+
+          <div class="mvv-card reveal reveal-d3">
+            <div class="mvv-label">Valores</div>
+            <h3 class="mvv-title">Como agimos</h3>
+            <p class="mvv-txt">
+              Transparência, respeito, qualidade e melhoria contínua. Cada decisão é tomada com ética e comprometimento, valorizando clientes, parceiros e o ecossistema de colecionadores que nos inspira a evoluir sempre.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ FAIXA CTA ═══════════ -->
+    <section id="cta-faixa" aria-label="Chamada para ação">
+      <div class="container">
+        <div class="cta-faixa-inner">
+          <h2>Pronto para expandir<br>sua coleção?</h2>
+          <a href="https://wa.me/5599999999999"
+             class="btn-dark"
+             target="_blank"
+             rel="noopener noreferrer">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            Falar pelo WhatsApp agora
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ CONTATO ═══════════ -->
+    <section id="contato" class="section section-soft" aria-labelledby="contato-title">
+      <div class="container">
+        <div class="contato-grid">
+
+          <div class="reveal">
+            <div class="section-badge">Fale conosco</div>
+            <h2 class="sec-title" id="contato-title">
+              Entre em <span>contato</span>
+            </h2>
+            <p class="sec-text">
+              Tire suas dúvidas, solicite informações sobre peças específicas ou consulte disponibilidade. Atendemos 24 horas pelo WhatsApp.
+            </p>
+
+            <div class="contato-items">
+
+              <div class="ci">
+                <div class="ci-icon-box">
+                  <svg class="ci-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="ci-label">E-mail</div>
+                  <a href="mailto:minisdorique@gmail.com" class="ci-val">minisdorique@gmail.com</a>
+                </div>
+              </div>
+
+              <div class="ci">
+                <div class="ci-icon-box">
+                  <svg class="ci-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="ci-label">Endereço</div>
+                  <div class="ci-val">Rua Salvador Allende, 34</div>
+                </div>
+              </div>
+
+              <div class="ci">
+                <div class="ci-icon-box">
+                  <svg class="ci-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="ci-label">Atendimento</div>
+                  <div class="ci-val">24 horas por dia</div>
+                </div>
+              </div>
+
+              <div class="ci">
+                <div class="ci-icon-box">
+                  <svg class="ci-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke-linecap="round"/>
+                    <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" stroke-linecap="round"/>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="ci-label">Instagram</div>
+                  <a href="https://www.instagram.com/minis_do_rique?igsh=MW40anR1bTM2N2JycQ=="
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     class="ci-val">
+                    @minis_do_rique
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="reveal reveal-d2">
+            <div class="contato-card">
+              <h2 class="cc-title">Vamos conversar?</h2>
+              <p class="cc-sub">
+                Atendemos pelo WhatsApp e pelo Instagram. Conta pra gente o que você procura e a gente te ajuda a encontrar.
+              </p>
+              <a href="https://wa.me/5599999999999"
+                 class="btn-wa-full"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+                Chamar no WhatsApp
+              </a>
+              <a href="https://www.instagram.com/minis_do_rique?igsh=MW40anR1bTM2N2JycQ=="
+                 class="btn-ig-full"
+                 target="_blank"
+                 rel="noopener noreferrer">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+                Seguir no Instagram
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer>
+    <div class="container">
+
+      <div class="checker-line" style="margin-bottom:52px;" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+
+      <div class="footer-grid">
+
+        <div class="footer-logo">
+          <img src="logo.png" alt="Logo Minis do Rique">
+          <p class="footer-desc">
+            Miniaturas raras e expositores diecast de alta qualidade. Para colecionadores que levam a paixão a sério.
+          </p>
+          <p class="footer-cnpj">CNPJ: 52.801.518/0001-28</p>
+        </div>
+
+        <div>
+          <div class="footer-col-h">Navegação</div>
+          <div class="footer-links">
+            <a href="#sobre">Sobre nós</a>
+            <a href="#produtos">Produtos</a>
+            <a href="vitrine.html">Vitrine online</a>
+            <a href="#valores">Valores</a>
+            <a href="#missao">Missão e visão</a>
+            <a href="#contato">Contato</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-col-h">Contato</div>
+          <div class="footer-links">
+            <a href="mailto:minisdorique@gmail.com">minisdorique@gmail.com</a>
+            <a href="https://wa.me/5599999999999" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            <a href="https://www.instagram.com/minis_do_rique?igsh=MW40anR1bTM2N2JycQ==" target="_blank" rel="noopener noreferrer">@minis_do_rique</a>
+            <span class="footer-links" style="color:rgba(255,255,255,0.25); font-size:0.88rem; font-weight:300;">Rua Salvador Allende, 34</span>
+            <span class="footer-links" style="color:rgba(255,255,255,0.25); font-size:0.88rem; font-weight:300;">Atendimento 24h</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2025 Minis do Rique. Todos os direitos reservados.</p>
+        <a href="https://www.instagram.com/minis_do_rique?igsh=MW40anR1bTM2N2JycQ=="
+           class="footer-ig"
+           target="_blank"
+           rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+          @minis_do_rique
+        </a>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Rodapé MonteSite - Atualização Automática -->
+  <div id="montesite-footer-badge"></div>
+  <script src="https://vaabpicspdbolvutnscp.supabase.co/functions/v1/get-footer-iframe"></script>
+
+  <script>
+    /* ── Scroll progress ── */
+    const scrollBar = document.getElementById('scroll-bar');
+    const hero      = document.getElementById('hero');
+    const header    = document.getElementById('header');
+
+    function updateScroll() {
+      const docH = document.documentElement.scrollHeight - window.innerHeight;
+      scrollBar.style.width = (docH > 0 ? (window.scrollY / docH) * 100 : 0) + '%';
+    }
+
+    /* ── Parallax hero + header scroll ── */
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      header.classList.toggle('scrolled', y > 40);
+      updateScroll();
+      if (y < window.innerHeight * 1.5) {
+        hero.style.backgroundPositionY = Math.round(y * 0.32) + 'px';
+      }
+    }, { passive: true });
+
+    /* ── Mobile nav ── */
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileNav.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+
+    function closeMobileNav() {
+      mobileNav.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    /* ── Reveal on scroll ── */
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    /* ── Typewriter no eyebrow da hero ── */
+    const eyebrow = document.getElementById('hero-eyebrow');
+    if (eyebrow) {
+      const fullText = eyebrow.textContent;
+      eyebrow.textContent = '';
+      let i = 0;
+      function typeNext() {
+        if (i < fullText.length) {
+          eyebrow.textContent += fullText[i++];
+          setTimeout(typeNext, 38);
+        }
+      }
+      setTimeout(typeNext, 600);
+    }
+
+    /* ── 3D Tilt nos product cards ── */
+    document.querySelectorAll('.prod-card').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.style.transition = 'transform 0.12s ease, box-shadow 0.12s ease';
+      });
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        const x = ((e.clientX - r.left) / r.width  - 0.5) * 12;
+        const y = ((e.clientY - r.top)  / r.height - 0.5) * 12;
+        card.style.transform = `perspective(700px) rotateX(${-y}deg) rotateY(${x}deg) scale(1.025)`;
+        card.style.boxShadow = `${-x}px ${-y}px 32px rgba(255,208,0,0.12)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transition = 'transform 0.45s ease, box-shadow 0.45s ease';
+        card.style.transform  = '';
+        card.style.boxShadow  = '';
+      });
+    });
+
+    /* ── Spark no clique ── */
+    const SPARK_COLORS = ['#FFD000','#F5820A','#fff','#FFD000','#F5820A'];
+    document.addEventListener('click', e => {
+      const count = 8;
+      for (let i = 0; i < count; i++) {
+        const s = document.createElement('div');
+        s.className = 'spark';
+        const angle  = (i / count) * 360;
+        const dist   = 28 + Math.random() * 32;
+        const rad    = angle * Math.PI / 180;
+        s.style.cssText = `
+          left:${e.clientX - 3}px;
+          top:${e.clientY - 3}px;
+          background:${SPARK_COLORS[i % SPARK_COLORS.length]};
+          --sx:${Math.cos(rad) * dist}px;
+          --sy:${Math.sin(rad) * dist}px;
+        `;
+        document.body.appendChild(s);
+        s.addEventListener('animationend', () => s.remove());
+      }
+    });
+  </script>
+
+</body>
+</html>
